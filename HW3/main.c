@@ -188,14 +188,17 @@ void record(lotto_record_t lotto, int serial_number){
 int main(){
 	int num, record_num = 100000, serial_number;
 	lotto_record_t lotto_;
-	printf("歡迎光臨長庚樂透彩購買機台\n請問您要購買幾組 : ");
-	scanf("%d", &num);
-	if(num == 0)
+	
+    while(printf("歡迎光臨長庚樂透彩購買機台\n請問您要購買幾組 : ")&&scanf("%d", &num)){
+	if(num == 0){
 	    redemption();
+        break;
+        }
 	else{
 	    serial_number = check_exist(record_num);
 	    lotto_ = buy_lotto(num, serial_number+1);
 	    printf("%s", lotto_.receipt_time);
 	    record(lotto_, serial_number);
-	}
+	    }
+    }
 }
